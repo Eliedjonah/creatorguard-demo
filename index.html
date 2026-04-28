@@ -1,16 +1,236 @@
-HTML
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CreatorGuard Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CreatorGuard™ | Identity-Bound Provenance Infrastructure</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #05080c;
+      color: #e8f3f1;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, #07110f, #0b1118);
+      border-bottom: 1px solid #18352f;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      color: #00ffcc;
+      letter-spacing: 0.4px;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #7fffe3;
+      border: 1px solid #1e5f51;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0, 255, 204, 0.08);
+    }
+
+    .hero {
+      padding: 44px 28px 26px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: #00ffcc;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.05;
+      margin: 0 0 16px;
+      max-width: 900px;
+    }
+
+    .subheadline {
+      color: #a9b9b6;
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 850px;
+      margin-bottom: 24px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      border: 1px solid #263d39;
+      background: #0b1218;
+      color: #c9f7ef;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto 28px;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: #0b1118;
+      border: 1px solid #1b2b31;
+      border-radius: 14px;
+      padding: 18px;
+      min-height: 145px;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.04);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .card p {
+      margin: 0;
+      color: #9fb0ad;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .demo-wrap {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 0 28px 40px;
+    }
+
+    .demo-header {
+      background: #08100f;
+      border: 1px solid #18352f;
+      border-bottom: none;
+      padding: 14px 18px;
+      border-radius: 14px 14px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00ffcc;
+    }
+
+    .demo-note {
+      font-size: 12px;
+      color: #879692;
+    }
+
+    iframe {
+      width: 100%;
+      height: 760px;
+      border: 1px solid #18352f;
+      border-radius: 0 0 14px 14px;
+      background: #05080c;
+    }
+
+    .footer {
+      border-top: 1px solid #12231f;
+      padding: 22px 28px;
+      color: #778783;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      iframe { height: 680px; }
+      .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>CreatorGuard Demo</h1>
+  <div class="topbar">
+    <div class="brand">CreatorGuard™</div>
+    <div class="status">SYSTEM ONLINE • LICENSING REVIEW BUILD</div>
+  </div>
 
-<iframe src="https://creatorguard-enterpr-tiz7.bolt.host/" 
-width="100%" height="800px" style="border:none;">
-</iframe>
+  <section class="hero">
+    <div class="eyebrow">Identity-Bound Provenance Infrastructure</div>
+    <h1>Verification architecture for a synthetic media world.</h1>
+    <div class="subheadline">
+      CreatorGuard™ demonstrates a trust-layer framework for binding digital content to verified creator origin,
+      reconstructing provenance signals, and producing verification records designed for licensing,
+      enterprise integration, and acquisition discussions.
+    </div>
+
+    <div class="badges">
+      <div class="badge">Patent-Pending Positioning</div>
+      <div class="badge">Creator Identity Binding</div>
+      <div class="badge">Provenance Reconstruction</div>
+      <div class="badge">C2PA-Compatible Direction</div>
+      <div class="badge">AI Synthesis Verification Layer</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h3>Origin Verification</h3>
+      <p>Designed to move beyond simple AI detection by showing whether content can be connected to a trusted origin path.</p>
+    </div>
+
+    <div class="card">
+      <h3>Identity-Bound Signal</h3>
+      <p>Positions creator identity as the missing verification layer between synthetic content, provenance metadata, and legal trust.</p>
+    </div>
+
+    <div class="card">
+      <h3>Enterprise Risk Layer</h3>
+      <p>Built for media, music, legal evidence, financial fraud prevention, enterprise content security, and platform trust teams.</p>
+    </div>
+
+    <div class="card">
+      <h3>Licensing-Ready Framework</h3>
+      <p>Prepared as a technical demonstration for strategic review, partnership, acquisition, or API integration discussions.</p>
+    </div>
+  </section>
+
+  <section class="demo-wrap">
+    <div class="demo-header">
+      <div class="demo-title">Live Verification Portal</div>
+      <div class="demo-note">Simulated front-end demonstration • confidential review build</div>
+    </div>
+
+    <iframe src="https://creatorguard-enterp-tiz7.bolt.host/"></iframe>
+  </section>
+
+  <div class="footer">
+    CreatorGuard™ — Identity-bound attribution, provenance reconstruction, and synthetic media trust infrastructure.
+  </div>
 
 </body>
 </html>
+After pasting: Commit changes → wait 30–60 seconds → refresh your github.io link.
