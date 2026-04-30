@@ -1,946 +1,381 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CreatorGuard™ | Identity-Bound Provenance Infrastructure</title>
-
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{
-      --bg:#06080d;
-      --panel:#101722;
-      --panel2:#0c111a;
-      --line:#223044;
-      --text:#e8f0ff;
-      --muted:#9aa8bd;
-      --blue:#20a7ff;
-      --cyan:#21f0ff;
-      --green:#23e36f;
-      --red:#ff4d5e;
-      --amber:#ffbf3f;
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at top right, rgba(32,167,255,.18), transparent 35%),
-        radial-gradient(circle at top left, rgba(35,227,111,.10), transparent 30%),
-        var(--bg);
-      color:var(--text);
-      font-family:Inter, Arial, sans-serif;
-      line-height:1.5;
-    }
-
-    a{text-decoration:none;color:inherit}
-
-    .container{
-      width:min(1180px,92%);
-      margin:auto;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(12px);
-      background:rgba(6,8,13,.78);
-      border-bottom:1px solid var(--line);
-    }
-
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 0;
-    }
-
-    .logo{
-      font-size:1.25rem;
-      font-weight:900;
-      color:var(--cyan);
-      letter-spacing:-.5px;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:18px;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .nav-links a:hover{color:var(--cyan)}
-
-    .btn{
-      display:inline-block;
-      border:1px solid var(--cyan);
-      color:var(--cyan);
-      background:transparent;
-      padding:12px 18px;
-      border-radius:10px;
-      font-weight:800;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .btn:hover{background:rgba(33,240,255,.12)}
-
-    .btn-primary{
-      background:linear-gradient(90deg,var(--blue),var(--cyan));
-      color:#001018;
-      border:none;
-    }
-
-    .btn-green{
-      background:linear-gradient(90deg,#0ecf58,var(--green));
-      color:#00180a;
-      border:none;
-    }
-
-    .btn-red{
-      border-color:var(--red);
-      color:var(--red);
-    }
-
-    .hero{
-      padding:86px 0 56px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:34px;
-      align-items:center;
-    }
-
-    .eyebrow{
-      color:var(--cyan);
-      text-transform:uppercase;
-      font-size:.78rem;
-      font-weight:900;
-      letter-spacing:2px;
-      margin-bottom:14px;
-    }
-
-    h1{
-      font-size:clamp(2.6rem,6vw,5.7rem);
-      line-height:.94;
-      margin:0 0 20px;
-      letter-spacing:-3px;
-    }
-
-    .gradient{
-      background:linear-gradient(90deg,#fff,var(--cyan),var(--green));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .lead{
-      font-size:1.16rem;
-      color:#c7d4e8;
-      max-width:780px;
-      margin-bottom:26px;
-    }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin:24px 0;
-    }
-
-    .chip{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.035);
-      color:#c9d6ea;
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:.84rem;
-      font-weight:700;
-    }
-
-    .section{
-      padding:62px 0;
-    }
-
-    .section-head{
-      max-width:850px;
-      margin-bottom:30px;
-    }
-
-    .center{text-align:center;margin-left:auto;margin-right:auto}
-
-    h2{
-      font-size:clamp(1.9rem,3vw,3rem);
-      margin:0 0 14px;
-      letter-spacing:-1.5px;
-    }
-
-    h3{margin:0 0 10px}
-
-    .section-text{
-      color:var(--muted);
-      font-size:1rem;
-    }
-
-    .terminal-card,.card,.demo-panel,.comparison-wrap,.standard-box,.cta-card{
-      background:linear-gradient(180deg,rgba(16,23,34,.92),rgba(10,15,24,.92));
-      border:1px solid var(--line);
-      border-radius:20px;
-      box-shadow:0 24px 90px rgba(0,0,0,.42);
-    }
-
-    .terminal-top{
-      border-bottom:1px solid var(--line);
-      padding:13px 16px;
-      color:var(--muted);
-      font-size:.82rem;
-      display:flex;
-      align-items:center;
-      gap:7px;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      display:inline-block;
-    }
-
-    .red-dot{background:#ff5f57}
-    .amber-dot{background:#ffbd2e}
-    .green-dot{background:#28c840}
-
-    .terminal-body{padding:22px}
-
-    .status-box{
-      border-left:5px solid var(--green);
-      background:rgba(35,227,111,.06);
-      padding:22px;
-      border-radius:14px;
-      margin-bottom:18px;
-    }
-
-    .status-box.fail{
-      border-left-color:var(--red);
-      background:rgba(255,77,94,.08);
-    }
-
-    .status-title{
-      font-size:1.35rem;
-      font-weight:900;
-      margin-bottom:12px;
-    }
-
-    .green{color:var(--green)}
-    .red{color:var(--red)}
-    .amber{color:var(--amber)}
-    .blue{color:var(--cyan)}
-
-    .kv{
-      display:grid;
-      grid-template-columns:150px 1fr;
-      gap:8px 12px;
-      color:var(--muted);
-      font-size:.92rem;
-      margin-bottom:16px;
-    }
-
-    .kv strong{color:var(--text)}
-
-    ul{padding-left:22px;margin:12px 0}
-    li{margin:6px 0}
-
-    .note{
-      color:#c9d6ea;
-      font-size:.95rem;
-      border-top:1px solid var(--line);
-      margin-top:18px;
-      padding-top:16px;
-      font-style:italic;
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:20px;
-    }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    .grid-4{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-    }
-
-    .card{
-      padding:22px;
-    }
-
-    .metric{
-      color:var(--cyan);
-      font-weight:900;
-      font-size:.8rem;
-      letter-spacing:1px;
-      margin-bottom:8px;
-    }
-
-    .demo-panel{
-      padding:26px;
-    }
-
-    .scan-steps{
-      display:grid;
-      gap:10px;
-      margin:24px 0;
-    }
-
-    .scan-step{
-      display:flex;
-      justify-content:space-between;
-      gap:15px;
-      align-items:center;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.035);
-      border-radius:12px;
-      padding:13px 15px;
-    }
-
-    .pill{
-      color:#00180a;
-      background:var(--green);
-      font-size:.75rem;
-      font-weight:900;
-      padding:5px 9px;
-      border-radius:999px;
-      text-transform:uppercase;
-    }
-
-    .liability-panel{
-      border:1px solid rgba(255,77,94,.5);
-      background:rgba(255,77,94,.08);
-      border-radius:16px;
-      padding:22px;
-    }
-
-    .liability-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-
-    .mini-list{
-      color:#f6c7ce;
-      padding-left:18px;
-    }
-
-    .comparison-wrap{
-      overflow:auto;
-      padding:10px;
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      min-width:850px;
-    }
-
-    th,td{
-      padding:16px;
-      border-bottom:1px solid var(--line);
-      text-align:left;
-      vertical-align:top;
-    }
-
-    th{
-      color:#dbe8ff;
-      background:rgba(255,255,255,.035);
-      font-size:.86rem;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-    }
-
-    td{color:#cbd7e9}
-
-    .standard-box{
-      padding:34px;
-      text-align:center;
-    }
-
-    .quote{
-      font-size:1.55rem;
-      font-weight:850;
-      margin:0 0 16px;
-      color:#fff;
-    }
-
-    .pathway{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-      margin-top:24px;
-    }
-
-    .path-step{
-      padding:20px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(255,255,255,.035);
-    }
-
-    .num{
-      color:var(--cyan);
-      font-weight:900;
-      margin-bottom:8px;
-    }
-
-    .cta-section{
-      padding:70px 0 90px;
-    }
-
-    .cta-card{
-      padding:34px;
-      text-align:center;
-    }
-
-    .form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:20px;
-    }
-
-    input,select,textarea{
-      width:100%;
-      background:#070b12;
-      border:1px solid var(--line);
-      color:var(--text);
-      padding:13px;
-      border-radius:10px;
-      font-family:inherit;
-    }
-
-    textarea{
-      grid-column:1/-1;
-      min-height:100px;
-    }
-
-    .form button{
-      grid-column:1/-1;
-    }
-
-    .hidden{display:none}
-
-    footer{
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      padding:26px 0;
-      font-size:.9rem;
-    }
-
-    @media(max-width:900px){
-      .hero-grid,.grid-3,.grid-4,.pathway,.liability-grid,.form{
-        grid-template-columns:1fr;
-      }
-
-      .nav-links{display:none}
-      .hero{padding-top:54px}
-      h1{letter-spacing:-1.5px}
-    }
+    body { background:#05070b; color:#e5e7eb; font-family:Inter, Arial, sans-serif; }
+    .panel { background:rgba(15,18,28,.92); border:1px solid #1f2937; border-radius:16px; }
+    .blue { color:#38bdf8; }
+    .green { color:#22c55e; }
+    .red { color:#ef4444; }
+    .amber { color:#fbbf24; }
+    .glow-blue { box-shadow:0 0 28px rgba(56,189,248,.18); }
+    .glow-green { box-shadow:0 0 28px rgba(34,197,94,.18); border-color:#22c55e; }
+    .glow-red { box-shadow:0 0 28px rgba(239,68,68,.22); border-color:#ef4444; }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo">CG&nbsp;&nbsp;CreatorGuard™</div>
-      <div class="nav-links">
-        <a href="#problem">Problem</a>
-        <a href="#demo">Demo</a>
-        <a href="#comparison">Comparison</a>
-        <a href="#standard">Trust Layer</a>
-        <a href="#portfolio">IP Portfolio</a>
-      </div>
-      <a class="btn" href="#access">Request Access</a>
-    </nav>
-  </div>
+<header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+  <div class="font-black text-xl blue">CreatorGuard™</div>
+  <nav class="hidden md:flex gap-6 text-sm text-gray-400">
+    <a href="#demo">Demo</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#enforcement">Enforcement</a>
+    <a href="#portfolio">IP Portfolio</a>
+    <a href="#access">Request Access</a>
+  </nav>
 </header>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">Patent Pending • Identity-Bound Provenance • AI-Safe Publishing</div>
-      <h1><span class="gradient">The Identity Layer for Digital Reality.</span></h1>
+<section class="max-w-7xl mx-auto px-6 py-16 text-center">
+  <div class="inline-block mb-5 px-4 py-2 rounded-full border border-sky-500/40 text-sky-300 text-sm">
+    Patent Pending • Identity-Bound Provenance • Audit-Ready Attribution
+  </div>
 
-      <p class="lead">
-        CreatorGuard™ establishes identity-bound provenance infrastructure that survives reposting, metadata stripping,
-        compression, and synthetic manipulation. It converts unverified content into a liability signal for platforms,
-        advertisers, licensing systems, and AI training workflows.
+  <h1 class="text-4xl md:text-6xl font-black blue mb-6">
+    The Identity Layer for Digital Reality.
+  </h1>
+
+  <p class="max-w-4xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed">
+    CreatorGuard™ establishes identity-bound provenance infrastructure that survives reposting,
+    metadata stripping, compression, re-encoding, and synthetic manipulation. It converts
+    unverified content into a liability signal for platforms, advertisers, licensing systems,
+    and AI training workflows.
+  </p>
+
+  <div class="mt-8 flex flex-col md:flex-row justify-center gap-4">
+    <a href="#demo" class="px-6 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-bold">Initiate Verification Demo</a>
+    <a href="#comparison" class="px-6 py-3 rounded-lg border border-sky-500 text-sky-300 font-bold">View Capability Comparison</a>
+  </div>
+</section>
+
+<section id="demo" class="max-w-7xl mx-auto px-6 py-12">
+  <div class="grid lg:grid-cols-2 gap-8 items-start">
+
+    <div class="panel p-6 glow-blue">
+      <h2 class="text-2xl font-black mb-2">Origin Enforcement Gateway</h2>
+      <p class="text-gray-400 mb-6">
+        This is not detection. This is source-to-screen verification, enforcement eligibility,
+        and liability signaling.
       </p>
 
-      <p class="lead">
-        This is not future theory. This is a present infrastructure problem: AI-generated media, cloned voices,
-        fake creators, manipulated evidence, and unauthorized training data already exist. CreatorGuard™ is built
-        to verify origin instead of guessing after damage is done.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#demo">Initiate Verification Demo</a>
-        <a class="btn" href="#comparison">View Capability Comparison</a>
+      <div class="flex flex-col md:flex-row gap-3 mb-6">
+        <button onclick="showVerified()" class="flex-1 py-3 rounded-lg bg-green-600 hover:bg-green-500 font-black">
+          Show Verified
+        </button>
+        <button onclick="showFail()" class="flex-1 py-3 rounded-lg border border-red-500 text-red-300 hover:bg-red-950 font-black">
+          Simulate Unverified / High-Risk
+        </button>
       </div>
 
-      <div class="chips">
-        <span class="chip">USPTO Patent Pending</span>
-        <span class="chip">Platform-Agnostic</span>
-        <span class="chip">Negative Attribution Signaling</span>
-        <span class="chip">Audit-Ready Records</span>
-      </div>
-    </div>
+      <div id="resultBox" class="panel p-6 glow-green min-h-[520px]">
+        <h3 class="text-2xl font-black green mb-3">STATUS: ✅ ORIGIN VERIFIED</h3>
 
-    <div class="terminal-card" aria-label="Verification status interface">
-      <div class="terminal-top">
-        <span class="dot red-dot"></span>
-        <span class="dot amber-dot"></span>
-        <span class="dot green-dot"></span>
-        <span style="margin-left:8px;">creatorguard://origin-enforcement-gateway</span>
-      </div>
+        <div class="text-sm text-gray-300 space-y-1 mb-5">
+          <p><strong>Identity Anchor:</strong> Eddie Evans</p>
+          <p><strong>Verification ID:</strong> CG-8829-XP</p>
+          <p><strong>Timestamp:</strong> 2026-04-30</p>
+        </div>
 
-      <div class="terminal-body">
-        <div id="verifiedBox" class="status-box">
-          <div class="status-title green">STATUS: ✅ ORIGIN VERIFIED</div>
+        <h4 class="blue font-black mb-2">🔐 Identity Binding</h4>
+        <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+          <li>Biometric-linked signature</li>
+          <li>Cryptographic hash locked</li>
+          <li>Provenance reconstruction complete</li>
+        </ul>
 
-          <div class="kv">
-            <span>Identity Anchor</span><strong>Eddie Evans</strong>
-            <span>Verification ID</span><strong>CG-8829-XP</strong>
-            <span>Timestamp</span><strong>2026-04-29</strong>
-          </div>
+        <h4 class="blue font-black mb-2">⚖️ Enforcement Status</h4>
+        <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+          <li>Eligible for monetization</li>
+          <li>Eligible for trusted distribution</li>
+          <li>Eligible for AI training approval workflows</li>
+        </ul>
 
-          <ul class="binding-list">
-            <li>🔐 Biometric-linked signature</li>
-            <li>🔒 Cryptographic hash locked</li>
-            <li>✅ Provenance reconstruction complete</li>
-            <li>✅ Eligible for monetization</li>
-            <li>✅ Eligible for trusted distribution</li>
-            <li>✅ Eligible for AI training approval workflows</li>
-          </ul>
-
-          <p class="note">
-            This verification record provides cryptographic and identity-bound evidence of content origin and integrity,
-            enabling platform enforcement, licensing validation, and audit-ready attribution in synthetic media environments.
+        <div class="p-4 rounded-lg border border-green-500/40 bg-green-950/20 mb-5">
+          <p class="green font-black">✅ TRUST SIGNAL</p>
+          <p class="text-sm text-gray-300">
+            Verified content may be cleared for licensing, monetization, distribution,
+            audit review, and approved AI training ingestion.
           </p>
         </div>
 
-        <div id="failBox" class="status-box fail hidden">
-          <div class="status-title red">STATUS: ❌ UNVERIFIED / HIGH RISK</div>
+        <p class="text-sm italic text-gray-400 mb-5">
+          This verification record provides cryptographic and identity-bound evidence of content origin
+          and integrity, enabling platform enforcement, licensing validation, and audit-ready attribution.
+        </p>
 
-          <div class="kv">
-            <span>Identity Anchor</span><strong>UNKNOWN</strong>
-            <span>Verification ID</span><strong>NULL</strong>
-            <span>Timestamp</span><strong>INVALID</strong>
-          </div>
-
-          <ul class="risk-list">
-            <li>❌ No biometric signature detected</li>
-            <li>❌ No cryptographic binding</li>
-            <li>❌ Provenance reconstruction failed</li>
-            <li>❌ Blocked from monetization</li>
-            <li>❌ Restricted from distribution</li>
-            <li>❌ Excluded from AI training approval workflows</li>
-          </ul>
-
-          <p class="note">
-            Content is not eligible for enforcement, licensing, audit submission, monetization clearance,
-            trusted distribution, or AI training approval workflows.
-          </p>
-        </div>
-
-        <div class="hero-actions" style="margin-top:0;">
-          <button class="btn btn-green" onclick="showVerified()">Show Verified</button>
-          <button class="btn btn-red" onclick="showFail()">Simulate Unverified / High-Risk</button>
-        </div>
+        <button class="w-full py-3 rounded-lg bg-green-600 hover:bg-green-500 font-black">
+          📄 Download Audit-Ready Verification Record
+        </button>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section" id="problem">
-  <div class="container">
-    <div class="section-head center">
-      <h2>AI detection guesses. CreatorGuard™ verifies origin.</h2>
-      <p class="section-text">
-        Synthetic media broke the old assumption that content can be trusted by appearance, metadata, or platform upload history.
-        The issue is no longer only whether content looks fake. The issue is whether it has verified origin,
-        authorized use, and enforceable attribution.
-      </p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <div class="metric">01</div>
-        <h3>AI Amortization Failure</h3>
-        <p>
-          Platforms absorb escalating risk every time unverified content is monetized, distributed, licensed,
-          or used for model training without persistent identity-bound provenance.
+    <div class="space-y-6">
+      <div class="panel p-6">
+        <h3 class="text-xl font-black blue mb-4">AI Synthesis / AI Amortization / AI Synapses</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          CreatorGuard™ compresses identity, consent, origin records, content fingerprints,
+          authorization status, and downstream enforcement signals into one verification layer.
+          The value is not guessing whether content is fake. The value is proving whether content
+          has a trusted origin and enforceable usage path.
         </p>
       </div>
 
-      <div class="card">
-        <div class="metric">02</div>
-        <h3>AI Synthetic Confusion</h3>
-        <p>
-          Detection systems react after content appears. CreatorGuard™ focuses on origin binding before the content
-          becomes a liability across synthetic media environments.
-        </p>
+      <div class="panel p-6">
+        <h3 class="text-xl font-black blue mb-4">Present-Market Use Cases</h3>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li>• Platform upload verification</li>
+          <li>• Creator identity and licensing validation</li>
+          <li>• AI training approval or exclusion</li>
+          <li>• Deepfake impersonation risk control</li>
+          <li>• Audit-ready attribution records</li>
+          <li>• Enterprise trust and safety workflows</li>
+        </ul>
       </div>
+    </div>
 
-      <div class="card">
-        <div class="metric">03</div>
-        <h3>AI Synapse Integrity</h3>
-        <p>
-          CreatorGuard™ connects identity, content fingerprints, authorization records, audit trails,
-          and downstream trust signals into a unified verification architecture.
-        </p>
-      </div>
+  </div>
+</section>
+
+<section id="comparison" class="max-w-7xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-black text-center mb-3">
+    Unverified Content Creates Legal, Financial, and AI Training Liability
+  </h2>
+  <p class="text-center text-gray-400 mb-8">
+    CreatorGuard™ is positioned as verification infrastructure, not probability-based detection.
+  </p>
+
+  <div class="overflow-x-auto panel p-4">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-gray-700 text-gray-400">
+          <th class="p-4 text-left">Capability</th>
+          <th class="p-4 text-left">AI Detectors</th>
+          <th class="p-4 text-left">Watermarks</th>
+          <th class="p-4 text-left">C2PA Standard</th>
+          <th class="p-4 text-left blue">CreatorGuard™</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-800"><td class="p-4">Identity Anchoring</td><td>❌ None</td><td>❌ None</td><td>⚠️ Voluntary</td><td class="green">✅ Locked</td></tr>
+        <tr class="border-b border-gray-800"><td class="p-4">Survival After Manipulation</td><td>❌ Low</td><td>❌ Low</td><td>⚠️ Medium</td><td class="green">✅ High</td></tr>
+        <tr class="border-b border-gray-800"><td class="p-4">Platform Enforcement Ready</td><td>❌ No</td><td>❌ No</td><td>⚠️ Limited</td><td class="green">✅ Yes</td></tr>
+        <tr class="border-b border-gray-800"><td class="p-4">Legal / Audit Ready</td><td>❌ No</td><td>❌ No</td><td>⚠️ Partial</td><td class="green">✅ Yes</td></tr>
+        <tr class="border-b border-gray-800"><td class="p-4">AI Training Approval Status</td><td>❌ No</td><td>❌ No</td><td>⚠️ Not Primary</td><td class="green">✅ Supported</td></tr>
+        <tr><td class="p-4">Liability Exposure</td><td class="red">🔴 High</td><td class="red">🔴 High</td><td class="amber">🟡 Moderate</td><td class="green">🟢 Reduced</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="enforcement" class="max-w-7xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-black text-center mb-8">Platform Enforcement & Revenue Control Layer</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="panel p-6">
+      <h3 class="blue font-black mb-3">1. Platform Enforcement API</h3>
+      <ul class="text-sm text-gray-300 space-y-2">
+        <li>• Blocks unverified content at upload</li>
+        <li>• Flags liability before monetization</li>
+        <li>• Integrates with moderation pipelines</li>
+        <li>• Triggers compliance actions</li>
+      </ul>
+    </div>
+
+    <div class="panel p-6">
+      <h3 class="blue font-black mb-3">2. Licensing & Monetization Engine</h3>
+      <ul class="text-sm text-gray-300 space-y-2">
+        <li>• Verified content = monetization eligible</li>
+        <li>• Unverified content = revenue restricted</li>
+        <li>• Enables licensing validation</li>
+        <li>• Supports enterprise distribution</li>
+      </ul>
+    </div>
+
+    <div class="panel p-6">
+      <h3 class="blue font-black mb-3">3. AI Training Control Layer</h3>
+      <ul class="text-sm text-gray-300 space-y-2">
+        <li>• Verified content = allowed for training</li>
+        <li>• Unverified content = excluded from datasets</li>
+        <li>• Creates enforceable consent layer</li>
+        <li>• Reduces AI model legal exposure</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="section" id="demo">
-  <div class="container">
-    <div class="section-head">
-      <h2>Origin Enforcement Gateway</h2>
-      <p class="section-text">
-        A technical validation interface demonstrating how content moves from identity binding to provenance reconstruction,
-        enforcement eligibility, and AI training approval signaling.
-      </p>
-    </div>
+<section class="max-w-7xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-black text-center mb-8">Source-to-Screen Verification Architecture</h2>
 
-    <div class="demo-panel">
-      <div class="grid-3">
-        <div class="card">
-          <h3>Upload / Submit</h3>
-          <p>Content is submitted for source-to-screen verification using creator identity, content fingerprints, and authorization metadata.</p>
-        </div>
-
-        <div class="card">
-          <h3>Scan / Bind</h3>
-          <p>The system creates an identity-bound origin record that can be checked even after reposting, compression, editing, or format conversion.</p>
-        </div>
-
-        <div class="card">
-          <h3>Signal / Enforce</h3>
-          <p>Verified content clears downstream workflows. Unverified content becomes a risk signal, not a trusted asset.</p>
-        </div>
-      </div>
-
-      <div class="scan-steps">
-        <div class="scan-step"><span>File hash generated</span><span class="pill">complete</span></div>
-        <div class="scan-step"><span>Perceptual signature extracted</span><span class="pill">complete</span></div>
-        <div class="scan-step"><span>Identity anchor matched</span><span class="pill">verified</span></div>
-        <div class="scan-step"><span>Provenance ledger checked</span><span class="pill">confirmed</span></div>
-        <div class="scan-step"><span>Authorization and AI training status resolved</span><span class="pill">approved</span></div>
-      </div>
-
-      <div class="liability-panel">
-        <h3>⚠️ Platform Liability Exposure</h3>
-
-        <div class="liability-grid">
-          <ul class="mini-list">
-            <li>Content origin cannot be cryptographically verified</li>
-            <li>No enforceable identity or consent binding for usage or AI training</li>
-            <li>No audit-ready provenance record for legal or regulatory review</li>
-            <li>No reliable provenance reconstruction</li>
-          </ul>
-
-          <ul class="mini-list">
-            <li>✖ Copyright, IP, and misattribution claim exposure</li>
-            <li>✖ Ineligible for enterprise licensing deals</li>
-            <li>✖ Advertiser and partner trust risk</li>
-            <li>✖ Potential removal from AI training datasets</li>
-          </ul>
-        </div>
-
-        <p class="note" style="color:#fecaca;">
-          Risk Classification: CRITICAL. Unverified content becomes a liability signal for distribution,
-          monetization, licensing, audit, and AI training workflows.
-        </p>
-      </div>
-    </div>
+  <div class="grid md:grid-cols-4 gap-6">
+    <div class="panel p-5"><h3 class="blue font-black">1. Identity Anchor</h3><p class="text-sm text-gray-400">Binds verified creator identity to digital content at origin.</p></div>
+    <div class="panel p-5"><h3 class="blue font-black">2. Origin Record</h3><p class="text-sm text-gray-400">Creates tamper-evident verification record for audit, licensing, and enforcement.</p></div>
+    <div class="panel p-5"><h3 class="blue font-black">3. Reconstruction</h3><p class="text-sm text-gray-400">Checks whether content still connects to verified origin after reposting or modification.</p></div>
+    <div class="panel p-5"><h3 class="blue font-black">4. Enforcement Signal</h3><p class="text-sm text-gray-400">Verified content becomes trusted. Unverified content becomes a liability signal.</p></div>
   </div>
 </section>
 
-<section class="section" id="comparison">
-  <div class="container">
-    <div class="section-head center">
-      <h2>Verification Capability Comparison</h2>
-      <p class="section-text">
-        CreatorGuard™ is positioned as an enforcement-ready identity and authorization layer,
-        not merely metadata, watermarking, or probability-based detection.
-      </p>
-    </div>
+<section id="portfolio" class="max-w-7xl mx-auto px-6 py-12">
+  <div class="panel p-8 glow-blue">
+    <h2 class="text-3xl font-black blue text-center mb-8">Strategic IP Portfolio</h2>
 
-    <div class="comparison-wrap">
-      <table aria-label="Verification capability comparison">
-        <thead>
-          <tr>
-            <th>Capability</th>
-            <th>AI Detectors</th>
-            <th>Watermarks</th>
-            <th>C2PA Standard</th>
-            <th>CreatorGuard™</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><strong>Identity Anchoring</strong></td>
-            <td>❌ None</td>
-            <td>❌ None</td>
-            <td>⚠️ Voluntary</td>
-            <td class="green">✅ Linked</td>
-          </tr>
-
-          <tr>
-            <td><strong>Survival After Manipulation</strong></td>
-            <td>❌ Low</td>
-            <td>❌ Low</td>
-            <td>⚠️ Medium</td>
-            <td class="green">✅ High</td>
-          </tr>
-
-          <tr>
-            <td><strong>Platform Enforcement Ready</strong></td>
-            <td>❌ No</td>
-            <td>❌ No</td>
-            <td>⚠️ Limited</td>
-            <td class="green">✅ Yes</td>
-          </tr>
-
-          <tr>
-            <td><strong>Legal / Audit Ready</strong></td>
-            <td>❌ No</td>
-            <td>❌ No</td>
-            <td>⚠️ Partial</td>
-            <td class="green">✅ Yes</td>
-          </tr>
-
-          <tr>
-            <td><strong>Authorization & Consent Signaling</strong></td>
-            <td>❌ No</td>
-            <td>❌ No</td>
-            <td>⚠️ Partial</td>
-            <td class="green">✅ Built-in</td>
-          </tr>
-
-          <tr>
-            <td><strong>AI Training Approval Status</strong></td>
-            <td>❌ No</td>
-            <td>❌ No</td>
-            <td>⚠️ Not primary</td>
-            <td class="green">✅ Supported</td>
-          </tr>
-
-          <tr>
-            <td><strong>Liability Exposure</strong></td>
-            <td class="red">🔴 High</td>
-            <td class="red">🔴 High</td>
-            <td class="amber">🟡 Moderate</td>
-            <td class="green">🟢 Reduced</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="standard">
-  <div class="container">
-    <div class="standard-box">
-      <p class="quote">
-        CreatorGuard™ does not decide what happens to content. It proves what the content is,
-        who it is bound to, and whether downstream use is authorized.
-      </p>
-
-      <p class="section-text">
-        The system is framed as a voluntary but enforceable trust layer. Adoption is driven by commercial risk,
-        legal defensibility, audit requirements, licensing integrity, advertiser safety, insurer confidence,
-        and AI training governance.
-      </p>
-    </div>
-
-    <div class="pathway">
-      <div class="path-step">
-        <div class="num">01 Identity Anchor</div>
-        <h3>Bind origin</h3>
-        <p>Creator identity is bound to content at the point of origin using multimodal verification signals.</p>
-      </div>
-
-      <div class="path-step">
-        <div class="num">02 Origin Record</div>
-        <h3>Create proof</h3>
-        <p>A tamper-evident record supports audit, licensing, distribution, and enforcement workflows.</p>
-      </div>
-
-      <div class="path-step">
-        <div class="num">03 Reconstruction</div>
-        <h3>Survive changes</h3>
-        <p>Reconstruction checks whether content still connects to verified origin after reposting or modification.</p>
-      </div>
-
-      <div class="path-step">
-        <div class="num">04 Enforcement Signal</div>
-        <h3>Signal risk</h3>
-        <p>Verified content becomes trusted. Unverified content becomes a liability signal.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="portfolio">
-  <div class="container">
-    <div class="section-head center">
-      <h2>Strategic IP Portfolio</h2>
-      <p class="section-text">
-        CreatorGuard™ is the flagship identity-bound provenance layer. Additional technical IP is positioned for
-        licensing, acquisition review, integration, or strategic portfolio sale under NDA.
-      </p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3 class="blue">Flagship Layer</h3>
-        <p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="blue font-black mb-2">Flagship Layer</h3>
+        <p class="text-sm text-gray-300">
           <strong>CreatorGuard™</strong><br>
-          Identity-bound provenance infrastructure for synthetic media environments, content authentication,
-          authorization signaling, audit-ready attribution, and AI training governance.
+          Identity-bound provenance infrastructure for synthetic media, creator authentication,
+          audit-ready attribution, and enforcement signaling.
         </p>
       </div>
 
-      <div class="card">
-        <h3 class="blue">Defense / Integrity Layer</h3>
-        <p>
-          <strong>Context-Aware Voice Protection</strong><br>
-          Voice misuse prevention, AI impersonation defense, consent signaling, and synthetic voice risk control.
-        </p>
-        <p>
-          <strong>MIDRS</strong><br>
-          Multidimensional intelligence detection and response system for anomaly review, threat detection,
-          and identity misuse response.
+      <div>
+        <h3 class="blue font-black mb-2">Defense Layer</h3>
+        <p class="text-sm text-gray-300">
+          Context-aware voice protection, identity misuse prevention, threat detection,
+          and multidimensional intelligence response systems.
         </p>
       </div>
 
-      <div class="card">
-        <h3 class="blue">Infrastructure Layer</h3>
-        <p>
-          <strong>AI-Powered Autonomous Supply Chain System for Off-Earth Habitats</strong><br>
-          Autonomous logistics, resource routing, verification, and supply-chain intelligence for space habitat operations.
-        </p>
-        <p>
-          <strong>Farm2Wallet AGRI-Finance System</strong><br>
-          Agricultural finance, buyer pricing, payment, and market-access infrastructure.
+      <div>
+        <h3 class="blue font-black mb-2">Infrastructure Layer</h3>
+        <p class="text-sm text-gray-300">
+          Active expansion into verified digital ownership, AI governance, enterprise verification,
+          platform enforcement, and off-earth autonomous supply chain infrastructure.
         </p>
       </div>
     </div>
 
-    <div class="grid-3" style="margin-top:18px;">
-      <div class="card">
-        <h3 class="blue">AI Governance Expansion</h3>
-        <p>
-          Systems focused on verified digital ownership, AI training approval, negative attribution signaling,
-          and platform enforcement pathways.
-        </p>
-      </div>
+    <p class="text-center text-gray-400 text-sm italic mt-8">
+      Full architecture, claim strategy, technical models, and licensing pathways available under NDA.
+    </p>
 
-      <div class="card">
-        <h3 class="blue">Enterprise Risk Expansion</h3>
-        <p>
-          Systems designed for synthetic media trust, audit evidence, content misuse prevention,
-          and regulatory disclosure support.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3 class="blue">Technical Review Gate</h3>
-        <p>
-          Full technical architecture, claim strategy, licensing materials, and acquisition review materials
-          are available only under controlled access.
-        </p>
-      </div>
-    </div>
+    <a href="#access" class="block mt-5 text-center py-3 rounded-lg border border-sky-500 text-sky-300 font-black">
+      🔐 Request Access to Technical Whitepaper & IP Strategy
+    </a>
   </div>
 </section>
 
-<section class="cta-section" id="access">
-  <div class="container">
-    <div class="cta-card">
-      <div class="eyebrow">Private Access • NDA Review • Licensing Discussion</div>
+<section id="access" class="max-w-4xl mx-auto px-6 py-12 text-center">
+  <div class="panel p-8">
+    <h2 class="text-3xl font-black mb-3">Request Private Access</h2>
+    <p class="text-gray-400 mb-6">
+      Licensing discussions, acquisition review, and technical whitepaper access are available under appropriate review conditions.
+    </p>
 
-      <h2>Request access to the technical whitepaper and IP strategy.</h2>
+    <form onsubmit="submitAccess(event)" class="grid gap-4">
+      <input required class="p-3 rounded bg-black border border-gray-700" placeholder="Name">
+      <input required type="email" class="p-3 rounded bg-black border border-gray-700" placeholder="Email">
+      <input class="p-3 rounded bg-black border border-gray-700" placeholder="Company / Organization">
+      <select class="p-3 rounded bg-black border border-gray-700">
+        <option>Area of Interest</option>
+        <option>Platform licensing</option>
+        <option>AI training compliance</option>
+        <option>Enterprise verification</option>
+        <option>IP acquisition / partnership</option>
+      </select>
+      <textarea class="p-3 rounded bg-black border border-gray-700" placeholder="Brief message"></textarea>
+      <button class="py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-black">🔐 Request Access</button>
+    </form>
 
-      <p class="section-text" style="max-width:780px;margin-left:auto;margin-right:auto;">
-        Full architecture, verification models, integration pathways, licensing materials, and strategic IP portfolio
-        materials are available only to qualified parties under appropriate review conditions.
-      </p>
-
-      <form class="form" onsubmit="submitAccess(event)">
-        <input required type="text" placeholder="Name" />
-        <input required type="email" placeholder="Email" />
-        <input type="text" placeholder="Company / Organization" />
-
-        <select>
-          <option>Area of Interest</option>
-          <option>CreatorGuard™ platform licensing</option>
-          <option>AI training compliance</option>
-          <option>Enterprise verification</option>
-          <option>Government / public-sector integrity</option>
-          <option>IP acquisition / portfolio review</option>
-          <option>Strategic partnership</option>
-        </select>
-
-        <textarea placeholder="Briefly describe your interest"></textarea>
-
-        <button class="btn btn-primary" type="submit">🔐 Request Access</button>
-      </form>
-
-      <p id="formResult" class="note hidden">Request received. Access is under review.</p>
-    </div>
+    <p id="formResult" class="hidden green font-bold mt-4">Request received. Access is under review.</p>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <strong>© 2026 CreatorGuard™. Patent Pending. All rights reserved.</strong><br>
-    Verification without surveillance. Provenance without platform lock-in.
-  </div>
+<footer class="text-center text-gray-500 text-sm py-10">
+  © 2026 CreatorGuard™. Patent Pending. Verification without surveillance. Provenance without platform lock-in.
 </footer>
 
 <script>
-  function showVerified(){
-    document.getElementById("verifiedBox").classList.remove("hidden");
-    document.getElementById("failBox").classList.add("hidden");
-  }
+function showVerified() {
+  const box = document.getElementById("resultBox");
+  box.className = "panel p-6 glow-green min-h-[520px]";
+  box.innerHTML = `
+    <h3 class="text-2xl font-black green mb-3">STATUS: ✅ ORIGIN VERIFIED</h3>
+    <div class="text-sm text-gray-300 space-y-1 mb-5">
+      <p><strong>Identity Anchor:</strong> Eddie Evans</p>
+      <p><strong>Verification ID:</strong> CG-8829-XP</p>
+      <p><strong>Timestamp:</strong> 2026-04-30</p>
+    </div>
+    <h4 class="blue font-black mb-2">🔐 Identity Binding</h4>
+    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+      <li>Biometric-linked signature</li>
+      <li>Cryptographic hash locked</li>
+      <li>Provenance reconstruction complete</li>
+    </ul>
+    <h4 class="blue font-black mb-2">⚖️ Enforcement Status</h4>
+    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+      <li>Eligible for monetization</li>
+      <li>Eligible for trusted distribution</li>
+      <li>Eligible for AI training approval workflows</li>
+    </ul>
+    <div class="p-4 rounded-lg border border-green-500/40 bg-green-950/20 mb-5">
+      <p class="green font-black">✅ TRUST SIGNAL</p>
+      <p class="text-sm text-gray-300">
+        Verified content may be cleared for licensing, monetization, distribution,
+        audit review, and approved AI training ingestion.
+      </p>
+    </div>
+    <p class="text-sm italic text-gray-400 mb-5">
+      This verification record provides cryptographic and identity-bound evidence of content origin
+      and integrity, enabling platform enforcement, licensing validation, and audit-ready attribution.
+    </p>
+    <button class="w-full py-3 rounded-lg bg-green-600 hover:bg-green-500 font-black">
+      📄 Download Audit-Ready Verification Record
+    </button>
+  `;
+}
 
-  function showFail(){
-    document.getElementById("verifiedBox").classList.add("hidden");
-    document.getElementById("failBox").classList.remove("hidden");
-  }
+function showFail() {
+  const box = document.getElementById("resultBox");
+  box.className = "panel p-6 glow-red min-h-[520px]";
+  box.innerHTML = `
+    <h3 class="text-2xl font-black red mb-3">STATUS: ❌ UNVERIFIED / HIGH RISK</h3>
+    <div class="text-sm text-gray-300 space-y-1 mb-5">
+      <p><strong>Identity Anchor:</strong> UNKNOWN</p>
+      <p><strong>Verification ID:</strong> NULL</p>
+      <p><strong>Risk Level:</strong> CRITICAL</p>
+    </div>
 
-  function submitAccess(event){
-    event.preventDefault();
-    document.getElementById("formResult").classList.remove("hidden");
-  }
+    <h4 class="red font-black mb-2">PLATFORM LIABILITY EXPOSURE</h4>
+    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+      <li>Content origin cannot be cryptographically verified</li>
+      <li>No enforceable identity or consent binding for usage or AI training</li>
+      <li>No audit-ready provenance record for legal or regulatory review</li>
+    </ul>
+
+    <h4 class="red font-black mb-2">SYSTEM CONSEQUENCES</h4>
+    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+      <li>Exposure to copyright, IP, and misattribution claims</li>
+      <li>Ineligible for enterprise licensing, distribution, and monetization pipelines</li>
+      <li>Elevated regulatory risk under AI transparency and disclosure laws</li>
+      <li>Advertiser, partner, and platform trust degradation</li>
+      <li>Disqualification from AI training and data ingestion workflows</li>
+    </ul>
+
+    <div class="p-4 rounded-lg border border-red-500/40 bg-red-950/20 mb-5">
+      <p class="red font-black">⚠️ LIABILITY SIGNAL</p>
+      <p class="text-sm text-gray-300">
+        Distribution of unverified content introduces regulatory exposure, monetization risk,
+        licensing risk, and AI training liability.
+      </p>
+    </div>
+
+    <div class="bg-red-600 text-white text-center font-black py-3 rounded-lg">
+      RISK CLASSIFICATION: 🔴 CRITICAL
+    </div>
+  `;
+}
+
+function submitAccess(event) {
+  event.preventDefault();
+  document.getElementById("formResult").classList.remove("hidden");
+}
 </script>
 
 </body>
 </html>
-
