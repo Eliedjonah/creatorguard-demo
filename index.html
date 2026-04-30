@@ -127,7 +127,7 @@ body{
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <h2 class="text-center mb-4">Live Verification Portal</h2>
+            <h2 class="text-center mb-4">Origin Enforcement Gateway</h2>
 
             <div class="text-center mb-4">
                 <button class="btn btn-outline-primary btn-lg px-5" onclick="showVerified()">Initialize Identity-Bound Verification</button>
@@ -156,6 +156,11 @@ body{
                 <p id="enforcementText">
                     Eligible for platform enforcement, licensing validation, and audit submission.
                 </p>
+                ul id="enforcementActions">
+    <li>✔ Eligible for monetization</li>
+    <li>✔ Eligible for trusted distribution</li>
+    <li>✔ Eligible for AI training approval workflows</li>
+</ul>
 
                 <div class="money-line" id="moneyLine">
                     This verification record provides cryptographic and identity-bound evidence of content origin and integrity, enabling platform enforcement, licensing validation, and audit-ready attribution in synthetic media environments.
@@ -180,6 +185,9 @@ body{
     <div class="row justify-content-center">
         <div class="col-md-10">
 
+<p class="text-center mt-3" style="color:#f85149; font-weight:600;">
+    Distribution of unverified content introduces regulatory exposure, monetization risk, and AI training liability.
+</p>
             <h2 class="text-center mb-4">Verification Capability Comparison</h2>
             <p class="text-center text-muted mb-4">
                 Platforms that cannot verify content origin assume legal and financial risk.
@@ -343,7 +351,12 @@ body{
 
 <script>
 function showFail(){
-    document.getElementById("statusBox").className="status-fail";
+document.getElementById("enforcementActions").innerHTML = `
+    <li>❌ Blocked from monetization</li>
+    <li>❌ Restricted from trusted distribution</li>
+    <li>❌ Excluded from AI training datasets</li>
+`;    
+
     document.getElementById("statusBox").innerHTML=`
         <h4 class="mb-1">STATUS: ❌ ORIGIN UNVERIFIED</h4>
         <div class="small">Identity Anchor: <strong>NONE DETECTED</strong></div>
@@ -369,7 +382,32 @@ function showVerified(){
     location.reload();
 }
 </script>
+function showFail() {
+    document.getElementById("statusBox").className = "status-fail";
 
+    document.getElementById("statusBox").innerHTML = `
+        <h4 class="mb-1">STATUS: ❌ UNVERIFIED / HIGH RISK</h4>
+        <div class="small">Identity Anchor: UNKNOWN</div>
+        <div class="small">Verification ID: NULL</div>
+        <div class="small">Timestamp: INVALID</div>
+    `;
+
+    document.getElementById("bindingList").innerHTML = `
+        <li>No biometric signature detected</li>
+        <li>No cryptographic binding</li>
+        <li>Provenance Reconstruction: FAILED</li>
+    `;
+
+    document.getElementById("enforcementText").innerText =
+        "Content is NOT eligible for enforcement, licensing, or audit.";
+
+    document.getElementById("enforcementActions").innerHTML = `
+        <li>❌ Blocked from monetization</li>
+        <li>❌ Restricted from distribution</li>
+        <li>❌ Excluded from AI training</li>
+    `;
+}
+</script>
 </body>
 </html>
 
