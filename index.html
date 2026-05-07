@@ -314,101 +314,62 @@ class="py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-black">
 </button>
 
 </form>
-
-
-
-    <p id="formResult" class="hidden green font-bold mt-4">Request received. Access is under review.</p>
-  </div>
-</section>
-
-<footer class="text-center text-gray-500 text-sm py-10">
-  © 2026 CreatorGuard™. Patent Pending. Verification without surveillance. Provenance without platform lock-in.
-</footer>
-
 <script>
+
 function showVerified() {
-  const box = document.getElementById("resultBox");
-  box.className = "panel p-6 glow-green min-h-[520px]";
-  box.innerHTML = `
-    <h3 class="text-2xl font-black green mb-3">STATUS: ✅ ORIGIN VERIFIED</h3>
-    <div class="text-sm text-gray-300 space-y-1 mb-5">
-      <p><strong>Identity Anchor:</strong> Eddie Evans</p>
-      <p><strong>Verification ID:</strong> CG-8829-XP</p>
-      <p><strong>Timestamp:</strong> 2026-04-30</p>
-    </div>
-    <h4 class="blue font-black mb-2">🔐 Identity Binding</h4>
-    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
-      <li>Biometric-linked signature</li>
-      <li>Cryptographic hash locked</li>
-      <li>Provenance reconstruction complete</li>
-    </ul>
-    <h4 class="blue font-black mb-2">⚖️ Enforcement Status</h4>
-    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
-      <li>Eligible for monetization</li>
-      <li>Eligible for trusted distribution</li>
-      <li>Eligible for AI training approval workflows</li>
-    </ul>
-    <div class="p-4 rounded-lg border border-green-500/40 bg-green-950/20 mb-5">
-      <p class="green font-black">✅ TRUST SIGNAL</p>
-      <p class="text-sm text-gray-300">
-        Verified content may be cleared for licensing, monetization, distribution,
-        audit review, and approved AI training ingestion.
-      </p>
-    </div>
-    <p class="text-sm italic text-gray-400 mb-5">
-      This verification record provides cryptographic and identity-bound evidence of content origin
-      and integrity, enabling platform enforcement, licensing validation, and audit-ready attribution.
-    </p>
-    <button class="w-full py-3 rounded-lg bg-green-600 hover:bg-green-500 font-black">
-      📄 Download Audit-Ready Verification Record
-    </button>
-  `;
+
+Short Dawg <short742@gmail.com>
+2:17 PM (0 minutes ago)
+to me
+
+
+const box = document.getElementById("resultBox");
+
+box.className = "panel p-6 glow-green min-h-[520px]";
+
+box.innerHTML = `
+<h3 class="text-2xl font-black green mb-3">STATUS: ✅ ORIGIN VERIFIED</h3>
+
+<div class="text-sm text-gray-300 space-y-1 mb-5">
+<p><strong>Identity Anchor:</strong> CreatorGuard Verified Asset</p>
+<p><strong>Verification ID:</strong> CG-8829-XP</p>
+<p><strong>Timestamp:</strong> 2026-05-07</p>
+</div>
+
+<h4 class="blue font-black mb-2">🔹 Identity Binding</h4>
+
+<ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+<li>Cryptographic signature validated</li>
+<li>Content provenance chain intact</li>
+<li>Persistent attribution record confirmed</li>
+</ul>
+
+<h4 class="blue font-black mb-2">🔹 Enforcement Status</h4>
+
+<ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
+<li>Eligible for licensing workflows</li>
+<li>Eligible for monetization review</li>
+<li>Enterprise verification compatible</li>
+</ul>
+
+<div class="p-4 rounded-lg border border-green-500/40 bg-green-950/20 mb-5">
+<p class="green font-black">🟢 TRUST SIGNAL</p>
+
+<p class="text-sm text-gray-300">
+Verified content may qualify for licensing, attribution,
+distribution review, and approved AI ingestion workflows.
+</p>
+</div>
+
+<a href="audit-report.pdf"
+download
+class="inline-block py-3 px-5 rounded-lg bg-sky-600 hover:bg-sky-500 font-black">
+⬇ Download Audit-Ready Verification Record
+</a>
+`;
+
+
 }
-
-function showFail() {
-  const box = document.getElementById("resultBox");
-  box.className = "panel p-6 glow-red min-h-[520px]";
-  box.innerHTML = `
-    <h3 class="text-2xl font-black red mb-3">STATUS: ❌ UNVERIFIED / HIGH RISK</h3>
-    <div class="text-sm text-gray-300 space-y-1 mb-5">
-      <p><strong>Identity Anchor:</strong> UNKNOWN</p>
-      <p><strong>Verification ID:</strong> NULL</p>
-      <p><strong>Risk Level:</strong> CRITICAL</p>
-    </div>
-
-    <h4 class="red font-black mb-2">PLATFORM LIABILITY EXPOSURE</h4>
-    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
-      <li>Content origin cannot be cryptographically verified</li>
-      <li>No enforceable identity or consent binding for usage or AI training</li>
-      <li>No audit-ready provenance record for legal or regulatory review</li>
-    </ul>
-
-    <h4 class="red font-black mb-2">SYSTEM CONSEQUENCES</h4>
-    <ul class="list-disc ml-6 text-sm text-gray-300 space-y-1 mb-5">
-      <li>Exposure to copyright, IP, and misattribution claims</li>
-      <li>Ineligible for enterprise licensing, distribution, and monetization pipelines</li>
-      <li>Elevated regulatory risk under AI transparency and disclosure laws</li>
-      <li>Advertiser, partner, and platform trust degradation</li>
-      <li>Disqualification from AI training and data ingestion workflows</li>
-    </ul>
-
-    <div class="p-4 rounded-lg border border-red-500/40 bg-red-950/20 mb-5">
-      <p class="red font-black">⚠️ LIABILITY SIGNAL</p>
-      <p class="text-sm text-gray-300">
-        Distribution of unverified content introduces regulatory exposure, monetization risk,
-        licensing risk, and AI training liability.
-      </p>
-    </div>
-
-    <div class="bg-red-600 text-white text-center font-black py-3 rounded-lg">
-      RISK CLASSIFICATION: 🔴 CRITICAL
-    </div>
-  `;
-}
-
-
-  
-</script>
-
-</body>
-</html>
+  </script>
+  </body>
+  </div>html>
