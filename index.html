@@ -267,20 +267,55 @@
       Licensing discussions, acquisition review, and technical whitepaper access are available under appropriate review conditions.
     </p>
 
-    <form onsubmit="submitAccess(event)" class="grid gap-4">
-      <input required class="p-3 rounded bg-black border border-gray-700" placeholder="Name">
-      <input required type="email" class="p-3 rounded bg-black border border-gray-700" placeholder="Email">
-      <input class="p-3 rounded bg-black border border-gray-700" placeholder="Company / Organization">
-      <select class="p-3 rounded bg-black border border-gray-700">
-        <option>Area of Interest</option>
-        <option>Platform licensing</option>
-        <option>AI training compliance</option>
-        <option>Enterprise verification</option>
-        <option>IP acquisition / partnership</option>
-      </select>
-      <textarea class="p-3 rounded bg-black border border-gray-700" placeholder="Brief message"></textarea>
-      <button class="py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-black">🔐 Request Access</button>
-    </form>
+
+<form action="https://formspree.io/f/xlgzwgdy" method="POST" class="grid gap-4">
+
+<input
+name="name"
+required
+class="p-3 rounded bg-black border border-gray-700"
+placeholder="Name">
+
+<input
+name="email"
+required
+type="email"
+class="p-3 rounded bg-black border border-gray-700"
+placeholder="Email">
+
+<input
+name="company"
+class="p-3 rounded bg-black border border-gray-700"
+placeholder="Company / Organization">
+
+<select
+name="interest"
+class="p-3 rounded bg-black border border-gray-700">
+
+<option>Area of Interest</option>
+<option>Platform licensing</option>
+<option>AI training compliance</option>
+<option>Enterprise verification</option>
+<option>IP acquisition / partnership</option>
+
+</select>
+
+<textarea
+name="message"
+class="p-3 rounded bg-black border border-gray-700"
+placeholder="Brief message"></textarea>
+
+<button
+type="submit"
+class="py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-black">
+
+🔐 Request Access
+
+</button>
+
+</form>
+
+
 
     <p id="formResult" class="hidden green font-bold mt-4">Request received. Access is under review.</p>
   </div>
