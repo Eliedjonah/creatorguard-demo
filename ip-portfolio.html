@@ -1,1 +1,865 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Portfolio — Eddie Evans | Patent Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;600&display=swap');
 
+  :root {
+    --ink: #1a1f2e;
+    --ink-mid: #3a4155;
+    --ink-light: #6b7490;
+   --ink-faint: #9aa0b4;
+--rule: #dde1eb;
+    --surface: #f7f8fb;
+    --white: #ffffff;
+  --accent: #2d5fa6;
+--accent-light: #e8eef8;
+  --medical: #1a6b4a;
+    --medical-light: #e6f4ee;
+    --infra: #7a4a1a;
+    --infra-light: #f5ede6;
+    --ai: #3d1a6b;
+  --ai-light: #ede6f5;
+   --pending: #c8960a;
+   --pending-light: #fdf6e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+  min-height: 100vh;
+  }
+
+  .topbar {
+   background: var(--ink);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   position: sticky;
+  top: 0;
+   z-index: 100;
+}
+  .topbar-brand {
+font-family: 'DM Mono', monospace;
+    font-size: 13px;
+   color: #fff;
+  letter-spacing: 0.04em;
+  }
+  .topbar-brand span { color: #7a9fd4; }
+.topbar-nav { display: flex; gap: 28px; align-items: center; }
+  .topbar-nav a {
+    font-size: 12.5px;
+  color: #9aa8c4;
+   text-decoration: none;
+    letter-spacing: 0.03em;
+  transition: color 0.2s;
+  }
+  .topbar-nav a:hover { color: #fff; }
+.topbar-cta {
+  background: var(--accent);
+   color: #fff !important;
+   padding: 7px 16px;
+    border-radius: 4px;
+  font-size: 12px !important;
+    font-weight: 500;
+  }
+
+  .hero {
+   background: var(--white);
+border-bottom: 1px solid var(--rule);
+    padding: 64px 48px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+   font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+   text-transform: uppercase;
+   margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+font-size: 38px;
+   font-weight: 600;
+   color: var(--ink);
+  line-height: 1.2;
+    margin-bottom: 16px;
+max-width: 600px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--ink-mid);
+   line-height: 1.65;
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+.hero-meta {
+    display: flex;
+    gap: 32px;
+  padding-top: 24px;
+   border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+}
+  .hero-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+  }
+  .hero-meta-value {
+   font-size: 14px;
+   font-weight: 500;
+    color: var(--ink);
+  }
+
+  .nda-banner {
+    background: var(--pending-light);
+    border: 1px solid #e8c96a;
+   border-left: 3px solid var(--pending);
+    margin: 32px auto;
+   max-width: 1004px;
+  padding: 16px 20px;
+border-radius: 4px;
+   display: flex;
+align-items: flex-start;
+    gap: 12px;
+  }
+.nda-icon { font-size: 16px; margin-top: 1px; }
+.nda-text { font-size: 13px; color: #7a5c0a; line-height: 1.55; }
+.nda-text strong { font-weight: 600; }
+
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+.portfolio-section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+  gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+}
+  .section-dot {
+   width: 10px;
+   height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+  .section-title {
+    font-family: 'Playfair Display', serif;
+  font-size: 18px;
+   font-weight: 600;
+  color: var(--ink);
+}
+.section-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+   color: var(--ink-faint);
+   margin-left: auto;
+   letter-spacing: 0.06em;
+  }
+
+  .patent-grid { display: grid; gap: 12px; }
+
+  .patent-card {
+    background: var(--white);
+   border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 24px;
+   display: grid;
+  grid-template-columns: 1fr auto;
+    gap: 16px;
+   align-items: start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .patent-card:hover {
+  border-color: #b8c4d8;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .patent-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+  letter-spacing: 0.08em;
+    margin-bottom: 6px;
+}
+  .patent-title {
+    font-size: 15px;
+   font-weight: 500;
+    color: var(--ink);
+   margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .patent-desc {
+    font-size: 13px;
+   color: var(--ink-light);
+    line-height: 1.55;
+  }
+
+.patent-badges { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+
+.badge {
+   font-family: 'DM Mono', monospace;
+  font-size: 10px;
+   padding: 3px 8px;
+    border-radius: 3px;
+  white-space: nowrap;
+   letter-spacing: 0.04em;
+  }
+.badge-pending { background: var(--pending-light); color: var(--pending); }
+.badge-medical { background: var(--medical-light); color: var(--medical); }
+.badge-infra { background: var(--infra-light); color: var(--infra); }
+.badge-ai { background: var(--ai-light); color: var(--ai); }
+.badge-nda { background: #f0f0f0; color: #666; }
+
+  .inquiry-block {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 40px 48px;
+  display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+   align-items: center;
+   margin-top: 48px;
+  }
+  .inquiry-title {
+    font-family: 'Playfair Display', serif;
+   font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+.inquiry-sub {
+    font-size: 13.5px;
+    color: #8a96b0;
+  line-height: 1.6;
+  max-width: 480px;
+  }
+  .inquiry-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+   padding: 12px 24px;
+    border-radius: 5px;
+   font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+   white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #2450a0; }
+.btn-secondary {
+   background: transparent;
+   color: #7a9fd4;
+   border: 1px solid #3a4a6a;
+    padding: 11px 24px;
+   border-radius: 5px;
+   font-size: 13px;
+   text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: #7a9fd4; color: #a0c0e8; }
+
+  .page-footer {
+   background: var(--white);
+    border-top: 1px solid var(--rule);
+    padding: 20px 48px;
+  max-width: 1100px;
+    margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+    align-items: center;
+  }
+.footer-left {
+  font-family: 'DM Mono', monospace;
+   font-size: 11px;
+   color: var(--ink-faint);
+   letter-spacing: 0.04em;
+}
+  .footer-right { font-size: 12px; color: var(--ink-faint); }
+
+  @media (max-width: 768px) {
+   .topbar { padding: 12px 20px; }
+    .topbar-nav { display: none; }
+    .hero { padding: 40px 20px 32px; }
+    .hero h1 { font-size: 26px; }
+    .nda-banner { margin: 20px; }
+    .main { padding: 0 20px 60px; }
+    .patent-card { grid-template-columns: 1fr; }
+   .patent-badges { flex-direction: row; flex-wrap: wrap; }
+  .inquiry-block { grid-template-columns: 1fr; padding: 28px 24px; }
+    .inquiry-actions { align-items: stretch; }
+   .page-footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-brand">Eddie Evans <span>/ Patent Portfolio</span></div>
+  <div class="topbar-nav">
+    <a href="https://creatorguard.tech">CreatorGuard&#8482;</a>
+    <a href="https://creatorguard.tech/#demo">Demo</a>
+    <a href="https://creatorguard.tech/#request-access" class="topbar-cta">Request NDA Access</a>
+  </div>
+</nav>
+
+<div style="background: var(--white); border-bottom: 1px solid var(--rule);">
+<div class="hero">
+  <div class="hero-eyebrow">IP Portfolio &middot; Provisional Patent Applications</div>
+  <h1>Independent Innovation Portfolio</h1>
+  <p class="hero-sub">A portfolio of provisional patent applications spanning medical wearables, infrastructure intelligence, and AI-driven analytical systems. All applications are patent pending. Full technical documentation, claim strategy, and licensing pathways available under executed NDA.</p>
+<div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Inventor</span>
+     <span class="hero-meta-value">Eddie Evans</span>
+   </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Location</span>
+      <span class="hero-meta-value">Fort Lauderdale, FL</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Portfolio Size</span>
+      <span class="hero-meta-value">11 Applications</span>
+    </div>
+    <div class="hero-meta-item">
+    <span class="hero-meta-label">Status</span>
+    <span class="hero-meta-value">Patent Pending &middot; Available for Licensing</span>
+   </div>
+  </div>
+</div>
+</div>
+
+<div class="nda-banner">
+  <div class="nda-icon">&#128274;</div>
+  <div class="nda-text"><strong>Restricted Portfolio.</strong> This page lists solution areas and application titles only. Full specifications, claim charts, technical architecture, and pricing are available exclusively to qualified parties under a signed NDA. Use the inquiry form below to initiate access.</div>
+</div>
+
+<div class="main">
+
+  <div class="portfolio-section">
+    <div class="section-header">
+      <div class="section-dot" style="background: var(--medical);"></div>
+      <div class="section-title">Medical &amp; Wearable Technology</div>
+      <div class="section-count">3 applications</div>
+    </div>
+    <div class="patent-grid">
+     <div class="patent-card">
+       <div>
+         <div class="patent-number">EP-001 &middot; Medical Wearables</div>
+          <div class="patent-title">A.I. Vascular Sock &mdash; Diabetic Smart Sock Suite</div>
+          <div class="patent-desc">Puncture-resistant protective sock with integrated vascular monitoring systems. Addresses diabetic foot care through passive injury prevention combined with active physiological sensing.</div>
+        </div>
+        <div class="patent-badges">
+         <span class="badge badge-pending">Patent Pending</span>
+        <span class="badge badge-medical">Medical Device</span>
+        <span class="badge badge-nda">NDA Required</span>
+        </div>
+    </div>
+      <div class="patent-card">
+        <div>
+         <div class="patent-number">EP-002 &middot; Medical Wearables</div>
+         <div class="patent-title">Puncture-Resistant Diabetic Work Sock</div>
+         <div class="patent-desc">Occupational-grade protective footwear engineered for diabetic patients in work environments. Combines puncture resistance with diabetic foot protection requirements.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+        <span class="badge badge-medical">Medical Device</span>
+       <span class="badge badge-nda">NDA Required</span>
+        </div>
+     </div>
+      <div class="patent-card">
+      <div>
+        <div class="patent-number">EP-003 &middot; Medical Wearables</div>
+        <div class="patent-title">AI-Powered Adaptive Footwear System for Neuropathy and Flat Foot Relief</div>
+          <div class="patent-desc">Intelligent footwear system using adaptive response technology to address neuropathic pain and structural foot conditions. Dynamically adjusts to patient gait and pressure patterns.</div>
+        </div>
+        <div class="patent-badges">
+       <span class="badge badge-pending">Patent Pending</span>
+         <span class="badge badge-medical">Medical Device</span>
+         <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+   </div>
+  </div>
+
+  <div class="portfolio-section">
+    <div class="section-header">
+      <div class="section-dot" style="background: #6b3a8a;"></div>
+      <div class="section-title">Neurotechnology &amp; Cognitive Systems</div>
+   <div class="section-count">1 application</div>
+  </div>
+    <div class="patent-grid">
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-004 &middot; Neurotechnology</div>
+          <div class="patent-title">Neuropatch Cognitive State Patch</div>
+          <div class="patent-desc">Wearable patch system for monitoring and responding to cognitive state indicators. Designed for healthcare, performance optimization, and neurological condition management.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge" style="background:#f0e8f8;color:#6b3a8a;">Neurotech</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-section">
+    <div class="section-header">
+      <div class="section-dot" style="background: var(--infra);"></div>
+      <div class="section-title">Infrastructure &amp; Utility Intelligence</div>
+      <div class="section-count">3 applications</div>
+    </div>
+    <div class="patent-grid">
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-005 &middot; Infrastructure Intelligence</div>
+          <div class="patent-title">Water Shield A.I. &mdash; Weather/GIS-Driven Pre-Staging, Autonomous Rerouting and Microgrid Islanding for Utility Pump Stations</div>
+          <div class="patent-desc">Predictive utility infrastructure management integrating weather data and GIS analysis to pre-stage pump station operations, autonomously reroute resources, and enable microgrid islanding before storm events.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-infra">Utility / Gov</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-006 &middot; Agricultural Finance</div>
+          <div class="patent-title">Farm 2 Wallet AGRI &mdash; Finance System</div>
+          <div class="patent-desc">Agricultural finance infrastructure connecting farm-level production data directly to payment and financing workflows. Addresses capital access gaps through verified production-based financial instruments.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-infra">AgriFinance</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-007 &middot; Autonomous Logistics</div>
+          <div class="patent-title">AI-Powered Autonomous Supply Chain System for Off-Earth Habitats</div>
+          <div class="patent-desc">Autonomous supply chain management architecture for resource-constrained, communication-delayed environments. Addresses logistics, inventory, and resource allocation in isolated operational contexts.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-infra">Logistics / Defense</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-section">
+    <div class="section-header">
+      <div class="section-dot" style="background: var(--ai);"></div>
+      <div class="section-title">AI, Voice &amp; Analytical Systems</div>
+      <div class="section-count">4 applications</div>
+    </div>
+    <div class="patent-grid">
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-008 &middot; Voice Security</div>
+          <div class="patent-title">Voice Print Vault</div>
+          <div class="patent-desc">Secure biometric voice identity storage and verification system. Provides persistent voice identity anchoring for authentication, attribution, and anti-spoofing workflows across communication and access control platforms.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-ai">Voice / Biometric</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-009 &middot; Voice Security</div>
+          <div class="patent-title">Context Aware Voice Protection</div>
+          <div class="patent-desc">Voice protection system that adapts security response based on contextual signals including environment, speaker identity, and usage pattern. Addresses voice cloning and synthetic voice impersonation risks.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-ai">Voice / Security</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-010 &middot; Threat Intelligence</div>
+          <div class="patent-title">Multidimensional Intelligence Detection and Response System (MIDRS)</div>
+          <div class="patent-desc">Multi-layered threat detection and coordinated response architecture. Integrates signals across multiple intelligence dimensions to identify, classify, and respond to complex threat patterns in real time.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-ai">Defense / Enterprise</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div>
+          <div class="patent-number">EP-011 &middot; Analytical Systems</div>
+          <div class="patent-title">Quantum-Synthetic Analysis and Prediction Engine</div>
+          <div class="patent-desc">Advanced analytical and prediction architecture combining quantum-inspired processing with synthetic data modeling. Designed for high-complexity forecasting and decision support in enterprise and research environments.</div>
+        </div>
+        <div class="patent-badges">
+          <span class="badge badge-pending">Patent Pending</span>
+          <span class="badge badge-ai">Analytics / Enterprise</span>
+          <span class="badge badge-nda">NDA Required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inquiry-block">
+    <div>
+      <div class="inquiry-title">Inquire About Licensing or Acquisition</div>
+      <p class="inquiry-sub">Full specifications, claim charts, technical documentation, and pricing are available to qualified parties under a signed NDA. Individual patents and portfolio bundles are available for licensing or outright acquisition.</p>
+    </div>
+    <div class="inquiry-actions">
+      <a href="https://creatorguard.tech/#request-access" class="btn-primary">Request NDA Access</a>
+      <a href="mailto:creatorguardtechnologyllc@gmail.com" class="btn-secondary">Email Direct Inquiry</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  <div class="footer-left">Eddie Evans &middot; Fort Lauderdale, FL &middot; Patent Pending &middot; All rights reserved &copy; 2026</div>
+  <div class="footer-right">creatorguard.tech</div>
+</div>
+
+</body>
+</html>
+
+
+---------- Forwarded message ---------
+From: Short Dawg <short742@gmail.com>
+Date: Sun, May 10, 2026, 1:56 PM
+Subject:
+To: Short Dawg <short742@gmail.com>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Portfolio — Eddie Evans | Patent Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;600&display=swap');
+
+  :root {
+    --ink: #1a1f2e;
+    --ink-mid: #3a4155;
+    --ink-light: #6b7490;
+   --ink-faint: #9aa0b4;
+--rule: #dde1eb;
+    --surface: #f7f8fb;
+    --white: #ffffff;
+  --accent: #2d5fa6;
+--accent-light: #e8eef8;
+  --medical: #1a6b4a;
+    --medical-light: #e6f4ee;
+    --infra: #7a4a1a;
+    --infra-light: #f5ede6;
+    --ai: #3d1a6b;
+  --ai-light: #ede6f5;
+   --pending: #c8960a;
+   --pending-light: #fdf6e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+  min-height: 100vh;
+  }
+
+  .topbar {
+   background: var(--ink);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   position: sticky;
+  top: 0;
+   z-index: 100;
+}
+  .topbar-brand {
+font-family: 'DM Mono', monospace;
+    font-size: 13px;
+   color: #fff;
+  letter-spacing: 0.04em;
+  }
+  .topbar-brand span { color: #7a9fd4; }
+.topbar-nav { display: flex; gap: 28px; align-items: center; }
+  .topbar-nav a {
+    font-size: 12.5px;
+  color: #9aa8c4;
+   text-decoration: none;
+    letter-spacing: 0.03em;
+  transition: color 0.2s;
+  }
+  .topbar-nav a:hover { color: #fff; }
+.topbar-cta {
+  background: var(--accent);
+   color: #fff !important;
+   padding: 7px 16px;
+    border-radius: 4px;
+  font-size: 12px !important;
+    font-weight: 500;
+  }
+
+  .hero {
+   background: var(--white);
+border-bottom: 1px solid var(--rule);
+    padding: 64px 48px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+   font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+   text-transform: uppercase;
+   margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+font-size: 38px;
+   font-weight: 600;
+   color: var(--ink);
+  line-height: 1.2;
+    margin-bottom: 16px;
+max-width: 600px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--ink-mid);
+   line-height: 1.65;
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+.hero-meta {
+    display: flex;
+    gap: 32px;
+  padding-top: 24px;
+   border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+}
+  .hero-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+  }
+  .hero-meta-value {
+   font-size: 14px;
+   font-weight: 500;
+    color: var(--ink);
+  }
+
+  .nda-banner {
+    background: var(--pending-light);
+    border: 1px solid #e8c96a;
+   border-left: 3px solid var(--pending);
+    margin: 32px auto;
+   max-width: 1004px;
+  padding: 16px 20px;
+border-radius: 4px;
+   display: flex;
+align-items: flex-start;
+    gap: 12px;
+  }
+.nda-icon { font-size: 16px; margin-top: 1px; }
+.nda-text { font-size: 13px; color: #7a5c0a; line-height: 1.55; }
+.nda-text strong { font-weight: 600; }
+
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+.portfolio-section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+  gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+}
+  .section-dot {
+   width: 10px;
+   height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+  .section-title {
+    font-family: 'Playfair Display', serif;
+  font-size: 18px;
+   font-weight: 600;
+  color: var(--ink);
+}
+.section-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+   color: var(--ink-faint);
+   margin-left: auto;
+   letter-spacing: 0.06em;
+  }
+
+  .patent-grid { display: grid; gap: 12px; }
+
+  .patent-card {
+    background: var(--white);
+   border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 24px;
+   display: grid;
+  grid-template-columns: 1fr auto;
+    gap: 16px;
+   align-items: start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .patent-card:hover {
+  border-color: #b8c4d8;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .patent-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+  letter-spacing: 0.08em;
+    margin-bottom: 6px;
+}
+  .patent-title {
+    font-size: 15px;
+   font-weight: 500;
+    color: var(--ink);
+   margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .patent-desc {
+    font-size: 13px;
+   color: var(--ink-light);
+    line-height: 1.55;
+  }
+
+.patent-badges { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+
+.badge {
+   font-family: 'DM Mono', monospace;
+  font-size: 10px;
+   padding: 3px 8px;
+    border-radius: 3px;
+  white-space: nowrap;
+   letter-spacing: 0.04em;
+  }
+.badge-pending { background: var(--pending-light); color: var(--pending); }
+.badge-medical { background: var(--medical-light); color: var(--medical); }
+.badge-infra { background: var(--infra-light); color: var(--infra); }
+.badge-ai { background: var(--ai-light); color: var(--ai); }
+.badge-nda { background: #f0f0f0; color: #666; }
+
+  .inquiry-block {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 40px 48px;
+  display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+   align-items: center;
+   margin-top: 48px;
+  }
+  .inquiry-title {
+    font-family: 'Playfair Display', serif;
+   font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+.inquiry-sub {
+    font-size: 13.5px;
+    color: #8a96b0;
+  line-height: 1.6;
+  max-width: 480px;
+  }
+  .inquiry-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+   padding: 12px 24px;
+    border-radius: 5px;
+   font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+   white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #2450a0; }
+.btn-secondary {
+   background: transparent;
+   color: #7a9fd4;
+   border: 1px solid #3a4a6a;
+    padding: 11px 24px;
+   border-radius: 5px;
+   font-size: 13px;
+   text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: #7a9fd4; color: #a0c0e8; }
+
+  .page-footer {
+   background: var(--white);
+    border-top: 1px solid var(--rule);
+    padding: 20px 48px;
+  max-width: 1100px;
+    margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+    align-items: center;
+  }
+.footer-left {
+  font-family: 'DM Mono', monospace;
+   font-size: 11px;
+   color: var(--ink-faint);
+   letter-spacing: 0.04em;
+}
+  .footer-right { font-size: 12px; color: var(--ink-faint); }
+
+  @media (max-width: 768px) {
+   .topbar { padding: 12px 20px; }
+    .topbar-nav { display: none; }
+    .hero { padding: 40px 20px 32px; }
+    .hero h1 { font-size: 26px; }
+    .nda-banner { margin: 20px; }
+    .main { padding: 0 20px 60px; }
+    .patent-card { grid-template-columns: 1fr; }
+   .patent-badges { flex-direction: row; flex-wrap: wrap; }
+  .inquiry-block { grid-template-columns: 1fr; padding: 28px 24px; }
+    .inquiry-actions { align-items: stretch; }
+   .page-footer { flex-direction: column;
