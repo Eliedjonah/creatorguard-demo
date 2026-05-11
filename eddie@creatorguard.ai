@@ -219,7 +219,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid rgba(255,255,255,.06);display:fl
     <div class="status-row"><span>Provenance Reconstruction: </span>Complete</div>
     <div class="status-row"><span>Enforcement Status: </span>Eligible for monetization, distribution, AI training</div>
     <div class="trust-signal">✅ TRUST SIGNAL — Verified content cleared for licensing, monetization, distribution, audit review, and approved AI training ingestion.</div>
-    <a href="#" class="download-btn" onclick="return false;">📄 Download Audit-Ready Verification Record</a>
+    <a href="audit-report.pdf class="download-btn">📄 Download Audit-Ready Verification Record</a>
   </div>
   <div id="unverified-box" class="status-box risk hidden">
     <div class="status-label risk">🔴 STATUS: UNVERIFIED — LIABILITY SIGNAL ACTIVE</div>
@@ -395,7 +395,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid rgba(255,255,255,.06);display:fl
       </tbody>
     </table>
   </div>
-  <p class="nda-note">Full architecture, claim strategy, technical models, and licensing pathways available under NDA. Contact eddie@creatorguard.ai to initiate review.</p>
+  <p class="nda-note">Full architecture, claim strategy, technical models, and licensing pathways available under NDA. Contact CreatorGuardTechnologyLLC@gmail.com to initiate review.</p>
 </section>
 
 <section class="access-section" id="access">
@@ -420,7 +420,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid rgba(255,255,255,.06);display:fl
 </section>
 
 <footer>
-  <span class="footer-left">CREATORGARD™ · PATENT PENDING · USPTO DOCKET 85498 · LLC REGISTERED</span>
+  <span class="footer-left">CREATORGUARD™ · PATENT PENDING · USPTO DOCKET 85498 · LLC REGISTERED</span>
   <span class="footer-right">CREATORGUARD.TECH</span>
 </footer>
 
