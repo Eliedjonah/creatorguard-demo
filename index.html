@@ -402,22 +402,26 @@ footer{padding:1.5rem 3rem;border-top:1px solid rgba(255,255,255,.06);display:fl
 <section class="access-section" id="access">
   <h2 class="access-title">Request <span>Private Access.</span></h2>
   <p class="access-sub">Licensing discussions, acquisition review, and technical whitepaper access are available under appropriate review conditions.</p>
-  <div class="access-form">
-    <input class="form-field" type="text" placeholder="Name" required>
-    <input class="form-field" type="email" placeholder="Email" required>
-    <input class="form-field" type="text" placeholder="Company / Organization" required>
-    <select class="form-field">
-      <option value="" disabled selected>Area of Interest</option>
-      <option>Platform licensing</option>
-      <option>AI training compliance</option>
-      <option>Enterprise verification</option>
-      <option>IP acquisition / partnership</option>
-      <option>Legal / audit infrastructure</option>
-      <option>Voice identity protection</option>
-    </select>
-    <textarea class="form-field form-textarea" placeholder="Brief message"></textarea>
-    <button class="submit-btn" type="button">🔐 Request Access</button>
-  </div>
+  <form class="access-form"action="https://formspree.io/f/xlgxwjbp"method="POST">
+    <input class="form-field" type="text"name="name" placeholder="Name" required>
+<input class="form-field" type="email" name="email" placeholder="Email" required>
+<input class="form-field" type="text" name="company" placeholder="Company / Organization" required>
+
+<select class="form-field" name="area_of_interest" required>
+  <option value="" disabled selected>Area of Interest</option>
+  <option>Platform licensing</option>
+  <option>AI training compliance</option>
+  <option>Enterprise verification</option>
+  <option>IP acquisition / partnership</option>
+  <option>Legal / audit infrastructure</option>
+  <option>Voice identity protection</option>
+</select>
+
+<textarea class="form-field form-textarea" name="message" placeholder="Brief message"></textarea>
+
+<button class="submit-btn" type="submit">🔐 Request Access</button>
+</form>
+  
 </section>
 
 <footer>
